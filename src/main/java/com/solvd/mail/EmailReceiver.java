@@ -21,7 +21,7 @@ public class EmailReceiver {
         props.put("mail.imap.port", "993");
     }
 
-    public void getMails() {
+    public Message[] getMails() {
         setProperties();
         try {
             Session session = Session.getInstance(props);
@@ -42,8 +42,10 @@ public class EmailReceiver {
 
             inbox.close(false);
             store.close();
+            return messages;
         } catch (Exception e) {
             System.out.println("Error when receiving mails: " + e);
         }
+        return null;
     }
 }

@@ -29,7 +29,7 @@ public class EmailSender {
     }
 
 
-    public void sendMail(String body) {
+    public String sendMail(String body) {
         setUpProperties();
 
         Session session = Session.getInstance(props, new Authenticator() {
@@ -48,11 +48,12 @@ public class EmailSender {
 
             Transport.send(message);
             System.out.println("Email sent successfully!");
+            return "Email sent successfully!";
         } catch (
                 MessagingException e) {
             System.out.println("Error sending email: " + e);
         }
-
+        return "Error sending email";
     }
 
 }
